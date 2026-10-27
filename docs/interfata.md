@@ -1,8 +1,8 @@
-# Documentarea interfeței – TravelGuide
+# Documentarea interfetei – TravelGuide
 
-## 1. Scopul aplicației
+## 1. Scopul aplicatiei
 
-TravelGuide este o aplicație web destinată descoperirii atracțiilor turistice și planificării deplasărilor către acestea. Utilizatorii pot consulta informații despre orașe și atracții, pot explora categorii turistice, pot consulta trasee și pot publica recenzii.
+este o aplicatie web destinata descoperirii atractiilor turistice si planificarii deplasarilor către acestea. Utilizatorii pot consulta informații despre orașe și atracții, pot explora categorii turistice, pot consulta trasee și pot publica recenzii.
 
 ## 2. Descrierea paginilor
 
@@ -32,4 +32,4 @@ Paginile vor fi implementate progresiv, pe măsură ce sunt dezvoltate funcțion
 
 ## 4. Stadiul implementării
 
-Paginile descrise reprezintă structura planificată a interfeței. Funcționalitățile vor fi implementate și testate în etapele următoare ale proiectului.
+Paginile descrise reprezintă structura planificată a interfeței. Funcționalitățile vor fi implementate și testate în etapele următoare ale proiectului
