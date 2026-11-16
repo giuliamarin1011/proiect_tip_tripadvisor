@@ -12,66 +12,45 @@ spring Security- autentificare + fucntie de rol
 postgresql - pastreaza datele
 html/ css - pt pagini web
 
+Decizia 5 – Separarea aplicației în straturi
 
-# DECISIONS – TravelGuide
+ Proiectul este organizat în pachete distincte pentru entity, repository, service și controller.
 
-## Decizia 1 – Utilizarea PostgreSQL
+Motiv: Separarea responsabilităților facilitează întreținerea, testarea și extinderea aplicației.
 
-**Decizie:** PostgreSQL a fost ales ca sistem de gestiune a bazei de date.
+Decizia 6 – Utilizarea Thymeleaf
 
-**Motiv:** Aplicația utilizează date relaționale și necesită constrângeri de integritate, relații între tabele și interogări SQL.
+ Interfața web utilizează Thymeleaf pentru integrarea datelor din backend în paginile HTML.
 
-## Decizia 2 – Utilizarea Java și Spring Boot
+Motiv: Permite generarea dinamică a paginilor și afișarea informațiilor preluate din baza de date.
 
-**Decizie:** Backend-ul aplicației este realizat folosind Java și Spring Boot.
+ Decizia 7 – Relația many-to-many dintre atracții și categorii
 
-**Motiv:** Aceste tehnologii permit organizarea aplicației pe componente și separarea responsabilităților.
+Relația este implementată prin tabelul intermediar `atractie_categorie`.
 
-## Decizia 3 – Utilizarea Spring Data JPA
+Motiv:O atracție poate aparține mai multor categorii, iar o categorie poate include mai multe atracții.
 
-**Decizie:** Accesul la baza de date este realizat prin Spring Data JPA.
+Decizia 8 – Utilizarea BCrypt pentru parole
 
-**Motiv:** Repository-urile permit efectuarea operațiilor CRUD fără scrierea manuală a tuturor interogărilor SQL.
+Decizie: Parolele noi sunt transformate în hash folosind BCrypt înainte de salvarea în baza de date.
 
-## Decizia 4 – Separarea aplicației în straturi
+Motiv: Parolele nu trebuie stocate în format text simplu.
 
-**Decizie:** Proiectul este organizat în pachete distincte pentru entity, repository, service și controller.
+ Decizia 10 – Interfață vizuală personalizată
 
-**Motiv:** Separarea responsabilităților facilitează întreținerea, testarea și extinderea aplicației.
+Interfața utilizează o paletă de culori formată din verde închis, crem și teracotă, împreună cu fonturile Playfair Display și DM Sans.
 
-## Decizia 5 – Utilizarea Thymeleaf
+Motiv: Se urmărește o identitate vizuală potrivită unei aplicații turistice, diferențiată de un panou administrativ generic.
 
-**Decizie:** Interfața web utilizează Thymeleaf pentru integrarea datelor din backend în paginile HTML.
+Decizia 11 – Utilizarea Maven
 
-**Motiv:** Permite generarea dinamică a paginilor și afișarea informațiilor preluate din baza de date.
+Decizie: Maven este utilizat pentru gestionarea dependențelor și configurarea construirii proiectului.
 
-## Decizia 6 – Relația many-to-many dintre atracții și categorii
+Motiv: Simplifică administrarea bibliotecilor utilizate de aplicație.
 
-**Decizie:** Relația este implementată prin tabelul intermediar `atractie_categorie`.
+ Decizia 11 – Încărcarea datelor demonstrative
 
-**Motiv:** O atracție poate aparține mai multor categorii, iar o categorie poate include mai multe atracții.
+Datele inițiale sunt introduse prin fișierul `data.sql`.
 
-## Decizia 7 – Utilizarea BCrypt pentru parole
-
-**Decizie:** Parolele noi sunt transformate în hash folosind BCrypt înainte de salvarea în baza de date.
-
-**Motiv:** Parolele nu trebuie stocate în format text simplu.
-
-## Decizia 8 – Interfață vizuală personalizată
-
-**Decizie:** Interfața utilizează o paletă de culori formată din verde închis, crem și teracotă, împreună cu fonturile Playfair Display și DM Sans.
-
-**Motiv:** Se urmărește o identitate vizuală potrivită unei aplicații turistice, diferențiată de un panou administrativ generic.
-
-## Decizia 9 – Utilizarea Maven
-
-**Decizie:** Maven este utilizat pentru gestionarea dependențelor și configurarea construirii proiectului.
-
-**Motiv:** Simplifică administrarea bibliotecilor utilizate de aplicație.
-
-## Decizia 10 – Încărcarea datelor demonstrative
-
-**Decizie:** Datele inițiale sunt introduse prin fișierul `data.sql`.
-
-**Motiv:** Permite popularea bazei de date cu informații demonstrative necesare testării funcționalităților aplicației.
+Motiv: Permite popularea bazei de date cu informații demonstrative necesare testării funcționalităților aplicației.
 
