@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular recenzie - TravelGuide</title>
+</head>
+<body>
+
+<h1 th:text="${recenzie.idRecenzie == null ? 'Adaugă o recenzie' : 'Editează recenzia'}">
+    Formular recenzie
+</h1>
+
+<form th:action="@{/recenzii/salveaza}"
+      th:object="${recenzie}"
+      method="post">
+
+    <input type="hidden" th:field="*{idRecenzie}">
+
+    <p>
+        <strong>Autor:</strong>
+        Autorul va fi preluat automat din contul autentificat.
+    </p>
+
+    <br>
+
+    <label>Atracție:</label>
+    <select th:field="*{atractie}" required>
+        <option value="">Selectează atracția</option>
+        <option th:each="atractie : ${atractii}"
+                th:value="${atractie.idAtractie}"
+                th:text="${atractie.nume}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>Notă (1-5):</label>
+    <input type="number"
+           th:field="*{nota}"
+           min="1"
+           max="5"
+           required>
+
+    <br><br>
+
+    <label>Comentariu:</label>
+    <textarea th:field="*{comentariu}"
+              required></textarea>
+
+    <br><br>
+
+    <button type="submit">Salvează</button>
+
+</form>
+
+<br>
+
+<a th:href="@{/recenzii}">Înapoi la lista recenziilor</a>
+
+</body>
+</html>

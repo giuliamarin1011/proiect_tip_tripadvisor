@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TravelGuide | Descoperă România</title>
+
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar">
+
+  <a href="/" class="logo">Travel<span>Guide.</span></a>
+
+  <nav>
+    <a href="#destinatii">Destinații</a>
+    <a href="#atractii">Atracții</a>
+    <a href="#recenzii">Recenzii</a>
+    <a href="#despre">Despre noi</a>
+
+    <a th:if="${isAdmin}" href="/administrare">
+      Administrare
+    </a>
+
+    <a th:if="${isUser}" href="/recenzii/nou">
+      Adaugă recenzie
+    </a>
+  </nav>
+
+  <div class="user-menu">
+
+    <a th:if="${isVisitor}" href="/login" class="nav-button">
+      Autentificare
+    </a>
+
+    <a th:if="${isAdmin}" href="/administrare" class="nav-button">
+      Panou ADMIN
+    </a>
+
+    <a th:if="${isUser}" href="/recenzii" class="nav-button">
+      Recenziile mele
+    </a>
+
+    <form th:if="${!isVisitor}"
+          th:action="@{/logout}"
+          method="post"
+          style="display:inline;">
+
+      <button type="submit" class="nav-button">
+        Deconectare
+      </button>
+
+    </form>
+
+  </div>
+
+</header>
+
+<main>
+
+  <section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+      <p class="eyebrow">GHIDUL TĂU DE CĂLĂTORIE</p>
+
+      <h1>
+        Nu doar vizita.<br>
+        <span>Descoperă.</span>
+      </h1>
+
+      <p class="hero-description">
+        De la locuri pline de istorie la peisaje care îți taie
+        respirația, următoarea ta aventură începe aici.
+      </p>
+
+      <a href="/atractii" class="primary-button">
+        Descoperă atracțiile <span>→</span>
+      </a>
+
+    </div>
+
+    <div class="hero-bottom">
+      <span>ROMÂNIA · LOCURI DE DESCOPERIT</span>
+      <span>01 / EXPLOREAZĂ</span>
+    </div>
+
+  </section>
+
+  <section class="intro-section" id="despre">
+
+    <div>
+      <p class="eyebrow dark">MAI MULT DECÂT O DESTINAȚIE</p>
+
+      <h2>
+        Fiecare loc are<br>
+        o poveste.
+      </h2>
+    </div>
+
+    <p class="intro-text">
+      TravelGuide te ajută să descoperi locuri interesante,
+      să explorezi orașe și să găsești experiențe noi.
+      Inspiră-te și planifică următoarea aventură.
+    </p>
+
+  </section>
+
+  <section class="destinations-section" id="destinatii">
+
+    <div class="section-heading">
+
+      <div>
+        <p class="eyebrow dark">EXPLOREAZĂ ROMÂNIA</p>
+        <h2>Locuri care merită văzute.</h2>
+      </div>
+
+      <a href="/orase" class="text-link">
+        Toate orașele ↗
+      </a>
+
+    </div>
+
+    <div class="destination-grid">
+
+      <article class="destination-card">
+
+        <img
+                src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
+                alt="Peisaj montan">
+
+        <div class="destination-info">
+          <span>01 · NATURĂ</span>
+          <h3>Munți și aventură</h3>
+        </div>
+
+      </article>
+
+      <article class="destination-card">
+
+        <img
+                src="https://images.unsplash.com/photo-1518005020951-eccb494ad742"
+                alt="Arhitectură impresionantă">
+
+        <div class="destination-info">
+          <span>02 · ARHITECTURĂ</span>
+          <h3>Istorie și cultură</h3>
+        </div>
+
+      </article>
+
+      <article class="destination-card">
+
+        <img
+                src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e"
+                alt="Peisaj cu lac">
+
+        <div class="destination-info">
+          <span>03 · RELAXARE</span>
+          <h3>Locuri de evadare</h3>
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <section class="attractions-section" id="atractii">
+
+    <div class="section-heading">
+
+      <div>
+        <p class="eyebrow dark">COLECȚIA NOASTRĂ</p>
+        <h2>Descoperă atracțiile.</h2>
+      </div>
+
+      <a href="/atractii" class="text-link">
+        Vezi toate atracțiile ↗
+      </a>
+
+    </div>
+
+    <div class="attraction-list">
+
+      <article class="attraction-row"
+               th:each="atractie : ${atractii}">
+
+        <div class="attraction-number">
+          <span th:text="${atractie.idAtractie}">01</span>
+        </div>
+
+        <div class="attraction-details">
+
+          <h3 th:text="${atractie.nume}">
+            Numele atracției
+          </h3>
+
+          <p th:text="${atractie.oras.nume}">
+            Oraș
+          </p>
+
+        </div>
+
+        <span class="attraction-arrow">↗</span>
+
+      </article>
+
+      <p class="empty-message"
+         th:if="${#lists.isEmpty(atractii)}">
+        Momentan nu există atracții înregistrate.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- SECTIUNEA RECENZII -->
+
+  <section class="attractions-section" id="recenzii">
+
+    <div class="section-heading">
+
+      <div>
+        <p class="eyebrow dark">EXPERIENȚE ÎMPĂRTĂȘITE</p>
+        <h2>Ce spun călătorii.</h2>
+      </div>
+
+      <a href="/recenzii" class="text-link">
+        Toate recenziile ↗
+      </a>
+
+    </div>
+
+    <div class="attraction-list">
+
+      <article class="attraction-row"
+               th:each="recenzie : ${recenzii}">
+
+        <div class="attraction-number">
+          <span>★</span>
+        </div>
+
+        <div class="attraction-details">
+
+          <h3>
+            <span th:text="${recenzie.atractie.nume}">
+              Atracție
+            </span>
+
+            <span> · </span>
+
+            <span th:text="${recenzie.nota}">
+              5
+            </span>
+            / 5
+          </h3>
+
+          <p th:text="${recenzie.comentariu}">
+            Comentariul utilizatorului
+          </p>
+
+          <p>
+            Publicat de
+            <strong th:text="${recenzie.utilizator.nume}">
+              Utilizator
+            </strong>
+          </p>
+
+        </div>
+
+        <span class="attraction-arrow">☆</span>
+
+      </article>
+
+      <p class="empty-message"
+         th:if="${#lists.isEmpty(recenzii)}">
+        Momentan nu există recenzii publicate.
+      </p>
+      <p>
+    <span th:text="${#temporals.format(recenzie.dataRecenziei, 'dd.MM.yyyy, HH:mm')}">
+        16.11.2026, 14:35
+    </span>
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="explore-banner">
+
+    <p class="eyebrow">
+      URMĂTOAREA AVENTURĂ TE AȘTEAPTĂ
+    </p>
+
+    <h2>
+      Lumea e prea frumoasă<br>
+      ca să stai într-un singur loc.
+    </h2>
+
+    <a href="/atractii" class="primary-button">
+      Începe explorarea <span>→</span>
+    </a>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <a href="/" class="logo footer-logo">
+    Travel<span>Guide.</span>
+  </a>
+
+  <p>Descoperă locuri. Creează amintiri.</p>
+
+  <span>© 2026 TravelGuide</span>
+
+</footer>
+
+</body>
+</html>

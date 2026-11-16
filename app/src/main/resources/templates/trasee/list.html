@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trasee - TravelGuide</title>
+</head>
+<body>
+
+<h1>Trasee turistice</h1>
+
+<a th:href="@{/trasee/nou}">Adaugă un traseu</a>
+
+<br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Atracție</th>
+        <th>Transport</th>
+        <th>Oraș plecare</th>
+        <th>Descriere</th>
+        <th>Durată (minute)</th>
+        <th>Distanță (km)</th>
+        <th>Cost estimativ</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="traseu : ${trasee}">
+        <td th:text="${traseu.idTraseu}"></td>
+        <td th:text="${traseu.atractie.nume}"></td>
+        <td th:text="${traseu.mijlocTransport.denumire}"></td>
+        <td th:text="${traseu.orasPlecare.nume}"></td>
+        <td th:text="${traseu.descriere}"></td>
+        <td th:text="${traseu.durataMinute}"></td>
+        <td th:text="${traseu.distantaKm}"></td>
+        <td th:text="${traseu.costEstimativ}"></td>
+
+        <td>
+            <a th:href="@{/trasee/editeaza/{id}(id=${traseu.idTraseu})}">
+                Editează
+            </a>
+            |
+            <a th:href="@{/trasee/sterge/{id}(id=${traseu.idTraseu})}"
+               onclick="return confirm('Sigur dorești să ștergi acest traseu?')">
+                Șterge
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mijloace de transport - TravelGuide</title>
+</head>
+<body>
+
+<h1>Mijloace de transport disponibile</h1>
+
+<a th:href="@{/transporturi/nou}">Adaugă un mijloc de transport</a>
+
+<br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Denumire</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="transport : ${transporturi}">
+        <td th:text="${transport.idTransport}"></td>
+        <td th:text="${transport.denumire}"></td>
+        <td>
+            <a th:href="@{/transporturi/editeaza/{id}(id=${transport.idTransport})}">
+                Editează
+            </a>
+            |
+            <a th:href="@{/transporturi/sterge/{id}(id=${transport.idTransport})}"
+               onclick="return confirm('Sigur dorești să ștergi acest mijloc de transport?')">
+                Șterge
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

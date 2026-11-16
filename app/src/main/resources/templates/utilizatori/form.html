@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Formular utilizator</title>
+</head>
+<body>
+
+<h1 th:text="${utilizator.idUtilizator == null ? 'Adaugă utilizator' : 'Editează utilizator'}">
+  Utilizator
+</h1>
+
+<form th:action="@{/utilizatori/salveaza}"
+      th:object="${utilizator}"
+      method="post">
+
+  <input type="hidden" th:field="*{idUtilizator}">
+
+  <label>Nume:</label>
+  <input type="text" th:field="*{nume}" required>
+  <br><br>
+
+  <label>Email:</label>
+  <input type="email" th:field="*{email}" required>
+  <br><br>
+
+  <label>Parolă:</label>
+  <input type="password" name="parola"
+         th:attr="required=${utilizator.idUtilizator == null}">
+  <br><br>
+
+  <button type="submit">Salvează</button>
+
+</form>
+
+<br>
+<a th:href="@{/utilizatori}">Înapoi la utilizatori</a>
+
+</body>
+</html>

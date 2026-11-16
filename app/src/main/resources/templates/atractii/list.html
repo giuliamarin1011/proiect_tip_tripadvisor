@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Atracții turistice - TravelGuide</title>
+</head>
+<body>
+
+<h1>Atracții turistice</h1>
+
+<a th:href="@{/atractii/nou}">Adaugă o atracție</a>
+
+<br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nume</th>
+        <th>Oraș</th>
+        <th>Adresă</th>
+        <th>Program</th>
+        <th>Preț intrare</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="atractie : ${atractii}">
+        <td th:text="${atractie.idAtractie}"></td>
+        <td th:text="${atractie.nume}"></td>
+        <td th:text="${atractie.oras.nume}"></td>
+        <td th:text="${atractie.adresa}"></td>
+        <td th:text="${atractie.program}"></td>
+        <td th:text="${atractie.pretIntrare}"></td>
+
+        <td>
+            <a th:href="@{/atractii/editeaza/{id}(id=${atractie.idAtractie})}">
+                Editează
+            </a>
+            |
+            <a th:href="@{/atractii/sterge/{id}(id=${atractie.idAtractie})}"
+               onclick="return confirm('Sigur dorești să ștergi această atracție?')">
+                Șterge
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

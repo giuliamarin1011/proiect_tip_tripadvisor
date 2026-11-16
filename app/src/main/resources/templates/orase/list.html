@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista orașelor - TravelGuide</title>
+</head>
+<body>
+
+<h1>Orașe disponibile</h1>
+
+<a th:href="@{/orase/nou}">Adaugă un oraș nou</a>
+
+<br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nume</th>
+        <th>Județ</th>
+        <th>Țară</th>
+        <th>Descriere</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="oras : ${orase}">
+        <td th:text="${oras.idOras}"></td>
+        <td th:text="${oras.nume}"></td>
+        <td th:text="${oras.judet}"></td>
+        <td th:text="${oras.tara}"></td>
+        <td th:text="${oras.descriere}"></td>
+        <td>
+            <a th:href="@{/orase/editeaza/{id}(id=${oras.idOras})}">
+                Editează
+            </a>
+            |
+            <a th:href="@{/orase/sterge/{id}(id=${oras.idOras})}"
+               onclick="return confirm('Sigur dorești să ștergi acest oraș?')">
+                Șterge
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

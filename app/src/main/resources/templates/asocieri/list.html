@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Asocieri - TravelGuide</title>
+</head>
+<body>
+
+<h1>Asocieri între atracții și categorii</h1>
+
+<a th:href="@{/asocieri/nou}">Adaugă o asociere</a>
+
+<br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Atracție</th>
+        <th>Categorie</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="asociere : ${asocieri}">
+        <td th:text="${asociere.atractie.nume}"></td>
+        <td th:text="${asociere.categorie.nume}"></td>
+
+        <td>
+            <a th:href="@{/asocieri/sterge/{idAtractie}/{idCategorie}(
+                idAtractie=${asociere.atractie.idAtractie},
+                idCategorie=${asociere.categorie.idCategorie})}"
+               onclick="return confirm('Sigur dorești să ștergi această asociere?')">
+                Șterge
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

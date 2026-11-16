@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Adaugă asociere - TravelGuide</title>
+</head>
+<body>
+
+<h1>Asociază o atracție cu o categorie</h1>
+
+<form th:action="@{/asocieri/salveaza}" method="post">
+
+  <label>Atracție:</label>
+
+  <select name="idAtractie" required>
+    <option value="">Selectează atracția</option>
+
+    <option th:each="atractie : ${atractii}"
+            th:value="${atractie.idAtractie}"
+            th:text="${atractie.nume}">
+    </option>
+  </select>
+
+  <br><br>
+
+  <label>Categorie:</label>
+
+  <select name="idCategorie" required>
+    <option value="">Selectează categoria</option>
+
+    <option th:each="categorie : ${categorii}"
+            th:value="${categorie.idCategorie}"
+            th:text="${categorie.nume}">
+    </option>
+  </select>
+
+  <br><br>
+
+  <button type="submit">Salvează asocierea</button>
+
+</form>
+
+<br>
+
+<a th:href="@{/asocieri}">Înapoi la lista asocierilor</a>
+
+</body>
+</html>

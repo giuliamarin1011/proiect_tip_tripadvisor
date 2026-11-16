@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilizatori - TravelGuide</title>
+</head>
+<body>
+
+<h1>Utilizatori înregistrați</h1>
+
+<a th:href="@{/administrare}">Înapoi la administrare</a>
+
+<br><br>
+
+<a th:href="@{/utilizatori/nou}">Adaugă un utilizator</a>
+
+<br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nume</th>
+        <th>Email</th>
+        <th>Data înregistrării</th>
+        <th>Rol</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="utilizator : ${utilizatori}">
+        <td th:text="${utilizator.idUtilizator}"></td>
+        <td th:text="${utilizator.nume}"></td>
+        <td th:text="${utilizator.email}"></td>
+        <td th:text="${utilizator.dataInregistrarii}"></td>
+        <td th:text="${utilizator.rol}"></td>
+
+        <td>
+            <a th:href="@{/utilizatori/editeaza/{id}(id=${utilizator.idUtilizator})}">
+                Editează
+            </a>
+
+            |
+
+            <form th:action="@{/utilizatori/sterge/{id}(id=${utilizator.idUtilizator})}"
+                  method="post"
+                  style="display:inline;"
+                  onsubmit="return confirm('Sigur dorești să ștergi acest utilizator?')">
+
+                <button type="submit">Șterge</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,549 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+    --green: #263f35;
+    --green-light: #526b59;
+    --cream: #f5f2e9;
+    --white: #fffefa;
+    --terracotta: #bd765b;
+    --text: #26342d;
+    --muted: #858b82;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 82px;
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 700;
+    color: var(--green);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--terracotta);
+}
+
+.navbar nav {
+    display: flex;
+    gap: 38px;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    transition: color .3s;
+}
+
+.navbar nav a:hover {
+    color: var(--terracotta);
+}
+
+.nav-button {
+    text-decoration: none;
+    background: var(--green);
+    color: white;
+    padding: 13px 22px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.nav-button span {
+    margin-left: 12px;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 610px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 80px 12%;
+    background:
+        url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2000&q=85')
+        center 48% / cover no-repeat;
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(20, 38, 31, .88),
+        rgba(20, 38, 31, .42) 65%,
+        rgba(20, 38, 31, .08)
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(55px, 7vw, 88px);
+    line-height: 1.05;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #d8a58c;
+    font-style: italic;
+}
+
+.hero-description {
+    max-width: 440px;
+    line-height: 1.9;
+    font-size: 14px;
+    color: rgba(255,255,255,.85);
+    margin-bottom: 35px;
+}
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+    padding: 17px 24px;
+    background: var(--terracotta);
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background .3s, transform .3s;
+}
+
+.primary-button:hover {
+    background: #a85e45;
+    transform: translateY(-3px);
+}
+
+.hero-bottom {
+    position: absolute;
+    z-index: 1;
+    bottom: 28px;
+    left: 12%;
+    right: 12%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.8);
+}
+
+/* INTRO */
+
+.intro-section {
+    padding: 110px 13%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+}
+
+.dark {
+    color: var(--terracotta);
+}
+
+.intro-section h2,
+.section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--green);
+}
+
+.intro-text {
+    font-size: 14px;
+    line-height: 2;
+    color: #737b72;
+    max-width: 470px;
+}
+
+/* DESTINATIONS */
+
+.destinations-section,
+.attractions-section {
+    padding: 85px 10%;
+}
+
+.destinations-section {
+    background: #ebe8de;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 45px;
+}
+
+.section-heading h2 {
+    font-size: 39px;
+}
+
+.text-link {
+    color: var(--green);
+    text-decoration: none;
+    font-size: 12px;
+    border-bottom: 1px solid var(--terracotta);
+    padding-bottom: 7px;
+}
+
+.destination-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.destination-card {
+    position: relative;
+    height: 390px;
+    overflow: hidden;
+    background: var(--green);
+}
+
+.destination-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s;
+}
+
+.destination-card:hover img {
+    transform: scale(1.07);
+}
+
+.destination-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 35%, rgba(0,0,0,.72));
+}
+
+.destination-info {
+    position: absolute;
+    z-index: 1;
+    bottom: 28px;
+    left: 25px;
+    color: white;
+}
+
+.destination-info span {
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.destination-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin-top: 9px;
+}
+
+/* ATTRACTIONS */
+
+.attraction-list {
+    border-top: 1px solid #d8d8cc;
+}
+
+.attraction-row {
+    display: flex;
+    align-items: center;
+    padding: 25px 10px;
+    border-bottom: 1px solid #d8d8cc;
+    transition: padding .3s, background .3s;
+}
+
+.attraction-row:hover {
+    padding-left: 22px;
+    background: rgba(255,255,255,.45);
+}
+
+.attraction-number {
+    width: 75px;
+    color: var(--terracotta);
+    font-size: 13px;
+}
+
+.attraction-details {
+    flex: 1;
+}
+
+.attraction-details h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--green);
+}
+
+.attraction-details p {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.attraction-arrow {
+    font-size: 23px;
+    color: var(--terracotta);
+}
+
+.empty-message {
+    padding: 30px 0;
+    color: var(--muted);
+}
+
+/* BANNER */
+
+.explore-banner {
+    padding: 100px 20px;
+    text-align: center;
+    background: var(--green);
+    color: white;
+}
+
+.explore-banner .eyebrow {
+    color: #d8a58c;
+}
+
+.explore-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(35px, 5vw, 55px);
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 35px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #1d332a;
+    color: rgba(255,255,255,.7);
+    padding: 35px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+}
+
+.footer-logo {
+    color: white;
+    font-size: 23px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .navbar nav {
+        display: none;
+    }
+
+    .hero {
+        min-height: 540px;
+        padding: 60px 7%;
+    }
+
+    .hero-bottom {
+        left: 7%;
+        right: 7%;
+    }
+
+    .intro-section {
+        padding: 70px 8%;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .destinations-section,
+    .attractions-section {
+        padding: 65px 7%;
+    }
+
+    .destination-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-card {
+        height: 340px;
+    }
+
+    .section-heading {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 18px;
+        text-align: center;
+    }
+}
+
+/* ADMINISTRATION PAGE */
+
+.admin-page {
+    padding: 85px 10% 110px;
+    min-height: 75vh;
+}
+
+.admin-heading {
+    max-width: 650px;
+    margin-bottom: 55px;
+}
+
+.admin-heading h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 500;
+    color: var(--green);
+    margin-bottom: 20px;
+}
+
+.admin-heading > p:last-child {
+    color: #737b72;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.admin-card {
+    min-height: 255px;
+    padding: 27px 23px;
+    background: var(--white);
+    border: 1px solid #e5e2d8;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform .3s, box-shadow .3s, background .3s;
+}
+
+.admin-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(38, 63, 53, .10);
+    background: #fff;
+}
+
+.admin-icon {
+    font-size: 29px;
+    color: var(--terracotta);
+    margin-bottom: 23px;
+}
+
+.admin-index {
+    font-size: 9px;
+    letter-spacing: 1.8px;
+    color: #999b8f;
+    margin-bottom: 12px;
+}
+
+.admin-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+    font-weight: 500;
+    color: var(--green);
+    margin-bottom: 10px;
+}
+
+.admin-card p {
+    font-size: 11px;
+    line-height: 1.7;
+    color: #858b82;
+    margin-bottom: 22px;
+}
+
+.admin-link {
+    margin-top: auto;
+    font-size: 10px;
+    color: var(--terracotta);
+    font-weight: 700;
+}
+
+.featured-card {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.featured-card .admin-index,
+.featured-card p {
+    color: rgba(255,255,255,.65);
+}
+
+.featured-card h2 {
+    color: white;
+}
+
+.featured-card .admin-icon,
+.featured-card .admin-link {
+    color: #d8a58c;
+}
+
+.featured-card:hover {
+    background: #304d40;
+}
+
+@media (max-width: 1000px) {
+    .admin-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-page {
+        padding: 60px 7%;
+    }
+
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+}

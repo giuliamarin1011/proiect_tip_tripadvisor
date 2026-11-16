@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formular atracție - TravelGuide</title>
+</head>
+<body>
+
+<h1 th:text="${atractie.idAtractie == null ? 'Adaugă o atracție' : 'Editează atracția'}">
+    Formular atracție
+</h1>
+
+<form th:action="@{/atractii/salveaza}" th:object="${atractie}" method="post">
+
+    <input type="hidden" th:field="*{idAtractie}">
+
+    <label>Nume:</label>
+    <input type="text" th:field="*{nume}" required>
+
+    <br><br>
+
+    <label>Descriere:</label>
+    <textarea th:field="*{descriere}"></textarea>
+
+    <br><br>
+
+    <label>Adresă:</label>
+    <input type="text" th:field="*{adresa}">
+
+    <br><br>
+
+    <label>Oraș:</label>
+    <select th:field="*{oras}" required>
+        <option value="">Selectează orașul</option>
+        <option th:each="oras : ${orase}"
+                th:value="${oras.idOras}"
+                th:text="${oras.nume}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>Program:</label>
+    <input type="text" th:field="*{program}">
+
+    <br><br>
+
+    <label>Preț intrare:</label>
+    <input type="number" step="0.01" min="0" th:field="*{pretIntrare}" required>
+
+    <br><br>
+
+    <button type="submit">Salvează</button>
+
+</form>
+
+<br>
+
+<a th:href="@{/atractii}">Înapoi la lista atracțiilor</a>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recenzii - TravelGuide</title>
+</head>
+
+<body>
+
+<h1>Recenzii</h1>
+
+<a th:href="@{/}">Pagina principală</a>
+
+<span th:if="${isAdmin}">
+    |
+    <a th:href="@{/administrare}">Administrare</a>
+</span>
+
+<br><br>
+
+<!-- USER și ADMIN pot adăuga recenzii -->
+<a th:if="${isUser or isAdmin}"
+   th:href="@{/recenzii/nou}">
+    Adaugă o recenzie
+</a>
+
+<br><br>
+
+<table border="1">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Utilizator</th>
+        <th>Atracție</th>
+        <th>Notă</th>
+        <th>Comentariu</th>
+        <th>Data recenziei</th>
+
+        <!-- Coloana Acțiuni apare doar pentru ADMIN -->
+        <th th:if="${isAdmin}">Acțiuni</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="recenzie : ${recenzii}">
+
+        <td th:text="${recenzie.idRecenzie}"></td>
+
+        <td th:text="${recenzie.utilizator.nume}"></td>
+
+        <td th:text="${recenzie.atractie.nume}"></td>
+
+        <td th:text="${recenzie.nota}"></td>
+
+        <td th:text="${recenzie.comentariu}"></td>
+
+        <td th:text="${#temporals.format(recenzie.dataRecenziei, 'dd.MM.yyyy, HH:mm')}"></td>
+        <!-- Doar ADMIN poate edita și șterge -->
+        <td th:if="${isAdmin}">
+
+            <a th:href="@{/recenzii/editeaza/{id}(id=${recenzie.idRecenzie})}">
+                Editează
+            </a>
+
+            |
+
+            <form th:action="@{/recenzii/sterge/{id}(id=${recenzie.idRecenzie})}"
+                  method="post"
+                  style="display:inline;"
+                  onsubmit="return confirm('Sigur dorești să ștergi această recenzie?')">
+
+                <button type="submit">Șterge</button>
+
+            </form>
+
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+</html>

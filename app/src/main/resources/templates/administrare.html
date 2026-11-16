@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelGuide | Administrare</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="/" class="logo">Travel<span>Guide.</span></a>
+
+    <nav>
+        <a href="/">Pagina principală</a>
+        <a href="/atractii">Atracții</a>
+    </nav>
+
+    <div class="user-menu">
+        <span class="admin-index">CONECTAT · ADMIN</span>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="nav-button">
+                Deconectare
+            </button>
+        </form>
+    </div>
+
+</header>
+
+<main class="admin-page">
+
+    <section class="admin-heading">
+
+        <p class="eyebrow dark">TRAVELGUIDE · PANOU DE CONTROL</p>
+
+        <h1>Bine ai venit în administrare.</h1>
+
+        <p>
+            Acesta este spațiul tău de administrare.
+            De aici poți gestiona toate informațiile
+            și funcționalitățile platformei TravelGuide.
+        </p>
+
+        <p class="admin-index">
+            ACCES ADMINISTRATOR · TOATE PERMISIUNILE
+        </p>
+
+    </section>
+
+    <section class="admin-grid">
+
+        <a href="/orase" class="admin-card">
+            <span class="admin-icon">⌖</span>
+            <span class="admin-index">01 / LOCAȚII</span>
+            <h2>Orașe</h2>
+            <p>Gestionează orașele disponibile în platformă.</p>
+            <span class="admin-link">Deschide secțiunea ↗</span>
+        </a>
+
+        <a href="/categorii" class="admin-card">
+            <span class="admin-icon">◇</span>
+            <span class="admin-index">02 / ORGANIZARE</span>
+            <h2>Categorii</h2>
+            <p>Organizează atracțiile în categorii.</p>
+            <span class="admin-link">Deschide secțiunea ↗</span>
+        </a>
+
+        <a href="/utilizatori" class="admin-card">
+            <span class="admin-icon">♙</span>
+            <span class="admin-index">03 / CONTURI</span>
+            <h2>Utilizatori</h2>
+            <p>Consultă și gestionează utilizatorii și rolurile lor.</p>
+            <span class="admin-link">Deschide secțiunea ↗</span>
+        </a>
+
+        <a href="/transporturi" class="admin-card">
+            <span class="admin-icon">↗</span>
+            <span class="admin-index">04 / MOBILITATE</span>
+            <h2>Transport</h2>
+            <p>Gestionează mijloacele de transport.</p>
+            <span class="admin-link">Deschide secțiunea ↗</span>
+        </a>
+
+        <a href="/atractii" class="admin-card featured-card">
+            <span class="admin-icon">✧</span>
+            <span class="admin-index">05 / DESCOPERĂ</span>
+            <h2>Atracții turistice</h2>
+            <p>Adaugă și actualizează locurile de vizitat.</p>
+            <span class="admin-link">Deschide secțiunea ↗</span>
+        </a>
+
+        <a href="/recenzii" class="admin-card">
+            <span class="admin-icon">☆</span>
+            <span class="admin-index">06 / OPINII</span>
+            <h2>Recenzii</h2>
+            <p>Gestionează evaluările și comentariile.</p>
+            <span class="admin-link">Deschide secțiunea ↗</span>
+        </a>
+
+        <a href="/trasee" class="admin-card">
+            <span class="admin-icon">⌁</span>
+            <span class="admin-index">07 / RUTE</span>
+            <h2>Trasee</h2>
+            <p>Administrează rutele turistice.</p>
+            <span class="admin-link">Deschide secțiunea ↗</span>
+        </a>
+
+        <a href="/asocieri" class="admin-card">
+            <span class="admin-icon">∞</span>
+            <span class="admin-index">08 / RELAȚII</span>
+            <h2>Asocieri</h2>
+            <p>Asociază atracțiile cu diferite categorii.</p>
+            <span class="admin-link">Deschide secțiunea ↗</span>
+        </a>
+
+    </section>
+
+</main>
+
+<footer>
+    <a href="/" class="logo footer-logo">
+        Travel<span>Guide.</span>
+    </a>
+    <p>Descoperă locuri. Creează amintiri.</p>
+    <span>© 2026 TravelGuide</span>
+</footer>
+
+</body>
+</html>

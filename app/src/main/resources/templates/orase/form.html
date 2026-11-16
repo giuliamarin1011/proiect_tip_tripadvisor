@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formular oraș - TravelGuide</title>
+
+  <style>
+    .error {
+        color: #c0392b;
+        font-size: 13px;
+        display: block;
+        margin-top: 5px;
+    }
+
+    input, textarea {
+        margin-top: 5px;
+    }
+
+    .field {
+        margin-bottom: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1 th:text="${oras.idOras == null ? 'Adaugă un oraș' : 'Editează orașul'}">
+  Formular oraș
+</h1>
+
+<form th:action="@{/orase/salveaza}"
+      th:object="${oras}"
+      method="post">
+
+  <input type="hidden" th:field="*{idOras}">
+
+  <div class="field">
+    <label for="nume">Nume:</label><br>
+    <input type="text" id="nume" th:field="*{nume}" required>
+
+    <span class="error"
+          th:if="${#fields.hasErrors('nume')}"
+          th:errors="*{nume}">
+        </span>
+  </div>
+
+  <div class="field">
+    <label for="judet">Județ:</label><br>
+    <input type="text" id="judet" th:field="*{judet}">
+
+    <span class="error"
+          th:if="${#fields.hasErrors('judet')}"
+          th:errors="*{judet}">
+        </span>
+  </div>
+
+  <div class="field">
+    <label for="tara">Țară:</label><br>
+    <input type="text" id="tara" th:field="*{tara}" required>
+
+    <span class="error"
+          th:if="${#fields.hasErrors('tara')}"
+          th:errors="*{tara}">
+        </span>
+  </div>
+
+  <div class="field">
+    <label for="descriere">Descriere:</label><br>
+    <textarea id="descriere"
+              th:field="*{descriere}"
+              rows="4"
+              cols="40"></textarea>
+
+    <span class="error"
+          th:if="${#fields.hasErrors('descriere')}"
+          th:errors="*{descriere}">
+        </span>
+  </div>
+
+  <button type="submit">Salvează</button>
+
+</form>
+
+<br>
+
+<a th:href="@{/orase}">Înapoi la lista orașelor</a>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formular transport - TravelGuide</title>
+</head>
+<body>
+
+<h1 th:text="${transport.idTransport == null ? 'Adaugă un mijloc de transport' : 'Editează mijlocul de transport'}">
+    Formular transport
+</h1>
+
+<form th:action="@{/transporturi/salveaza}" th:object="${transport}" method="post">
+
+    <input type="hidden" th:field="*{idTransport}">
+
+    <label>Denumire:</label>
+    <input type="text" th:field="*{denumire}" required>
+
+    <br><br>
+
+    <button type="submit">Salvează</button>
+</form>
+
+<br>
+<a th:href="@{/transporturi}">Înapoi la lista mijloacelor de transport</a>
+
+</body>
+</html>

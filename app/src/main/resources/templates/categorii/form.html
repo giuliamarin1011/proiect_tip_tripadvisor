@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formular categorie - TravelGuide</title>
+</head>
+<body>
+
+<h1 th:text="${categorie.idCategorie == null ? 'Adaugă o categorie' : 'Editează categoria'}">
+    Formular categorie
+</h1>
+
+<form th:action="@{/categorii/salveaza}" th:object="${categorie}" method="post">
+
+    <input type="hidden" th:field="*{idCategorie}">
+
+    <label>Nume:</label>
+    <input type="text" th:field="*{nume}" required>
+    <br><br>
+
+    <label>Descriere:</label>
+    <textarea th:field="*{descriere}"></textarea>
+    <br><br>
+
+    <button type="submit">Salvează</button>
+
+</form>
+
+<br>
+
+<a th:href="@{/categorii}">Înapoi la lista categoriilor</a>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formular traseu - TravelGuide</title>
+</head>
+<body>
+
+<h1 th:text="${traseu.idTraseu == null ? 'Adaugă un traseu' : 'Editează traseul'}">
+    Formular traseu
+</h1>
+
+<form th:action="@{/trasee/salveaza}" th:object="${traseu}" method="post">
+
+    <input type="hidden" th:field="*{idTraseu}">
+
+    <label>Atracție:</label>
+    <select th:field="*{atractie}" required>
+        <option value="">Selectează atracția</option>
+        <option th:each="atractie : ${atractii}"
+                th:value="${atractie.idAtractie}"
+                th:text="${atractie.nume}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>Mijloc de transport:</label>
+    <select th:field="*{mijlocTransport}" required>
+        <option value="">Selectează transportul</option>
+        <option th:each="transport : ${transporturi}"
+                th:value="${transport.idTransport}"
+                th:text="${transport.denumire}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>Oraș de plecare:</label>
+    <select th:field="*{orasPlecare}" required>
+        <option value="">Selectează orașul</option>
+        <option th:each="oras : ${orase}"
+                th:value="${oras.idOras}"
+                th:text="${oras.nume}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>Descriere:</label>
+    <textarea th:field="*{descriere}"></textarea>
+
+    <br><br>
+
+    <label>Durată (minute):</label>
+    <input type="number" min="1" th:field="*{durataMinute}">
+
+    <br><br>
+
+    <label>Distanță (km):</label>
+    <input type="number" min="0.01" step="0.01" th:field="*{distantaKm}">
+
+    <br><br>
+
+    <label>Cost estimativ:</label>
+    <input type="number" min="0" step="0.01" th:field="*{costEstimativ}">
+
+    <br><br>
+
+    <button type="submit">Salvează</button>
+
+</form>
+
+<br>
+
+<a th:href="@{/trasee}">Înapoi la lista traseelor</a>
+
+</body>
+</html>

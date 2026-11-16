@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorii - TravelGuide</title>
+</head>
+<body>
+
+<h1>Categorii disponibile</h1>
+
+<a th:href="@{/categorii/nou}">Adaugă o categorie nouă</a>
+
+<br><br>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nume</th>
+        <th>Descriere</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="categorie : ${categorii}">
+        <td th:text="${categorie.idCategorie}"></td>
+        <td th:text="${categorie.nume}"></td>
+        <td th:text="${categorie.descriere}"></td>
+        <td>
+            <a th:href="@{/categorii/editeaza/{id}(id=${categorie.idCategorie})}">
+                Editează
+            </a>
+            |
+            <a th:href="@{/categorii/sterge/{id}(id=${categorie.idCategorie})}"
+               onclick="return confirm('Sigur dorești să ștergi această categorie?')">
+                Șterge
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
